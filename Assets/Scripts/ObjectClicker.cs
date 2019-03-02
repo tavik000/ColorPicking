@@ -26,9 +26,9 @@ public class ObjectClicker : MonoBehaviour
 
     }
 
-    private void PrintName(GameObject go)
+    private void PrintName(GameObject clickObject)
     {
-        print(go.name);
+        print(clickObject.name);
         colorPanel.GetComponent<ColorPanel>().OpenColorPanel();
     }
 }

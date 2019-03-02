@@ -1571,6 +1571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorPanel: {fileID: 895415789}
+  pinkButton: {fileID: 1501731313}
+  purpleButton: {fileID: 453657739}
 --- !u!1 &1087883619
 GameObject:
   m_ObjectHideFlags: 0
