@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
     public Text comboText;
     public Text highscore;
 
-    [SerializeField] private Image crossImage;
-    [SerializeField] private Image tickImage;
+    [SerializeField] Image crossImage;
+    [SerializeField] Image tickImage;
 
     public GameObject[] pen;
 
@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
     // Game Balance Value
     public float initRandomScore;
 
-    private bool isLastPenEventGeneratePen = false; // is in the last pen event create new pen or not
-    private int lastPenEventGeneratePenCount;
+    bool isLastPenEventGeneratePen = false; // is in the last pen event create new pen or not
+    int lastPenEventGeneratePenCount;
 
     bool gameOver = false;
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     int [] correctAnswer = new int[5];
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
