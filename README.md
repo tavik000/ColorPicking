@@ -52,7 +52,7 @@ Guess the color of pen cap, correct get score, wrong deduce score.
 - Game Design: Key
 - Program: Key
 - Art: Key
-- BGM???
+- Music: Key
 - Sound Effect from [freesound.org](www.freesound.org)
 
 

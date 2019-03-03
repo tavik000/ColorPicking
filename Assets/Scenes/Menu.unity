@@ -1405,7 +1405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 239, y: 506}
+  m_AnchoredPosition: {x: 123, y: 588}
   m_SizeDelta: {x: 1918.8, y: 218.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170273747
@@ -1430,8 +1430,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: COLOR PICKING
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fdff491a1f7654cc2950d6006757c4bd, type: 2}
+  m_sharedMaterial: {fileID: 21938768571396812, guid: fdff491a1f7654cc2950d6006757c4bd,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1474,7 +1475,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1793,8 +1794,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\t\t\t\t\t\t\t\t\t\t\u8AAA\u660E\n\n\u731C\u6E2C\u7B46\u84CB\u7684\u984F\u8272\uFF0C\u731C\u5C0D\u52A0\u5206\uFF0C\u932F\u6263\u5206\u3002\n\u521D\u59CB\u96A8\u6A5F\u5206\uFF080-5000\uFF09\u3002
-    \u6700\u5F8C\u4E00\u679D\u7B46\u7684\u7B46\u84CB\u984F\u8272\u80FD\u7522\u751F\u7279\u6B8A\u6548\u679C\u3002\n\u7C89\u7D05+2000\u5206\uFF0C\u7D2B\u8272-2000\u5206\uFF0C\u7DA0\u8272\u7E3D\u5206x1.5\uFF0C\u85CD\u8272\u518D\u62BD\u5169\u679D\u7B46\uFF0C\u6A59\u8272\u518D\u62BD\u56DB\u679D\u7B46\u3002\n\u904A\u6232\u958B\u59CB\u524D\u80FD\u9078\u4E00\u500B\u554F\u984C\u63D0\u554F\u3002\uFF08\u5C0D\u8272\u7B46\u662F\u4E00\u679D\u7B46
-    \u7B46\u8EAB\u8207\u7B46\u84CB\u984F\u8272\u4E92\u63DB\uFF0C \u540C\u8272\u7B46\u662F\u4E00\u679D\u7B46\u7B46\u8EAB\u8207\u7B46\u84CB\u540C\u8272\uFF09"
+    \u6700\u5F8C\u4E00\u679D\u7B46\u7684\u7B46\u84CB\u984F\u8272\u80FD\u7522\u751F\u7279\u6B8A\u6548\u679C\u3002\n\u7C89\u7D05+2000\u5206\uFF0C\u7D2B\u8272-2000\u5206\uFF0C\u7DA0\u8272\u7E3D\u5206x1.5\uFF0C\u85CD\u8272\u518D\u62BD\u5169\u679D\u7B46\uFF0C\u6A59\u8272\u518D\u62BD\u56DB\u679D\u7B46\u3002\n\u904A\u6232\u958B\u59CB\u524D\u80FD\u9078\u4E00\u500B\u554F\u984C\u63D0\u554F\u3002\uFF08\u5C0D\u8272\u7B46\u662F\u5169\u679D\u7B46\u7684\u7B46\u8EAB\u8207\u7B46\u84CB\u984F\u8272\u4E92\u63DB\uFF0C
+    \u540C\u8272\u7B46\u662F\u4E00\u679D\u7B46\u7B46\u8EAB\u8207\u7B46\u84CB\u540C\u8272\uFF09"
 --- !u!222 &1592439719
 CanvasRenderer:
   m_ObjectHideFlags: 0

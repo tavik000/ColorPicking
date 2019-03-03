@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public Text scoreEquationText;
     public Text comboText;
+    public Text highscore;
 
     [SerializeField] private Image crossImage;
     [SerializeField] private Image tickImage;
@@ -80,6 +81,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        int savedScore = PlayerPrefs.GetInt("HighScore");
+        if (score > savedScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
+        }
+
         gameOver = true;
         score = 0;
     }
