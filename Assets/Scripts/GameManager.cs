@@ -81,6 +81,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+
+        scoreEquationText.text = scoreEquationText.text + " = " + score.ToString();
+
+
+
         int savedScore = PlayerPrefs.GetInt("HighScore");
         if (score > savedScore)
         {
@@ -178,15 +183,64 @@ public class GameManager : MonoBehaviour
         }
 
 
-        // Check Gameover
+        // Check Player Finish
         if (guessTime >= pen.Length)
         {
-            //GameOver
-            score = score + Mathf.RoundToInt(Random.Range(0.0f, initRandomScore));
-            scoreEquationText.text = scoreEquationText.text + " = " + score.ToString();
-            GameOver();
+            AddInitScore();
+
+            // Last Pen Event
+            LastPenEvent(correctAnswer[penNumber]);
+
         }
     }
+
+    void LastPenEvent(int lastPenID)
+    {
+        switch (lastPenID)
+        {
+            case 0:
+                score += 2000;
+                scoreEquationText.text = scoreEquationText.text + " <color=magenta>+ " + "2000" + "</color> (Last pen cap is Pink)";
+
+                // GameOver
+                GameOver();
+                break;
+            case 1:
+                score -= 2000;
+                scoreEquationText.text = scoreEquationText.text + " <color=purple>- " + "2000" + "</color> (Last pen cap is Purple)";
+
+                // GameOver
+                GameOver();
+                break;
+            case 2:
+                print("Whadya want?");
+                break;
+            case 3:
+                score = Mathf.RoundToInt(score * 1.5f);
+
+                string x = scoreEquationText.text.Replace("Score:", string.Empty);
+
+                scoreEquationText.text = "Score: <color=lime>(</color>" + x + " <color=lime>) x " + "1.5" + "</color> (Last pen cap is Light Green)";
+
+                // GameOver
+                GameOver();
+                break;
+            case 4:
+                print("Ulg, glib, Pblblblblb");
+                break;
+            default:
+                Debug.Log("Error lastPenID: " + lastPenID);
+                break;
+        }
+    }
+
+    void AddInitScore()
+    {
+        int randomScore = Mathf.RoundToInt(Random.Range(0.0f, initRandomScore));
+        score = score + randomScore;
+        print("randomScore: " + randomScore);
+    }
+
 
     IEnumerator CountdownCloseImage()
     {
