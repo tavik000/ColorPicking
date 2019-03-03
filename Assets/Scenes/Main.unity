@@ -1393,8 +1393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 380, y: -47}
-  m_SizeDelta: {x: 682.1, y: 30}
+  m_AnchoredPosition: {x: 1073, y: -112.5}
+  m_SizeDelta: {x: 2067, y: 161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707417879
 MonoBehaviour:
@@ -1418,11 +1418,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 75
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1652,6 +1652,9 @@ MonoBehaviour:
   colorPanel: {fileID: 895415789}
   pinkButton: {fileID: 1501731313}
   purpleButton: {fileID: 453657739}
+  blueButton: {fileID: 258812573}
+  lightGreenButton: {fileID: 356086001}
+  orangeButton: {fileID: 1339394012}
 --- !u!1 &1087883619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,9 +2137,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1520528603}
-  - component: {fileID: 1520528602}
   - component: {fileID: 1520528601}
   - component: {fileID: 1520528604}
+  - component: {fileID: 1520528602}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2169,6 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec500ac86e88b435ca5b2d9bf17ed3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorPanel: {fileID: 895415789}
 --- !u!4 &1520528603
 Transform:
   m_ObjectHideFlags: 0
@@ -2594,8 +2598,8 @@ GameObject:
   - component: {fileID: 2015321778}
   - component: {fileID: 2015321780}
   m_Layer: 0
-  m_Name: Pen
-  m_TagString: Untagged
+  m_Name: Pen1
+  m_TagString: Pen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

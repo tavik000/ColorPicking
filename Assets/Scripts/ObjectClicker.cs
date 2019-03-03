@@ -17,18 +17,23 @@ public class ObjectClicker : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider != null)
+            if (hit.collider != null && hit.transform.gameObject.tag == "Pen")
             {
-                PrintName(hit.transform.gameObject);
+                OpenPanel(hit.transform.gameObject);
             }
 
         }
 
     }
 
-    private void PrintName(GameObject clickObject)
+    private void OpenPanel(GameObject clickObject)
     {
-        print(clickObject.name);
-        colorPanel.GetComponent<ColorPanel>().OpenColorPanel();
+        int currentPenID = -1;
+
+        if (clickObject.name == "Pen1")
+        {
+            currentPenID = 0;
+        }
+        colorPanel.GetComponent<ColorPanel>().OpenColorPanel(currentPenID);
     }
 }
