@@ -6,6 +6,13 @@ public class ObjectClicker : MonoBehaviour
 {
     public GameObject colorPanel;
 
+    GameManager gm;
+
+    private void Start()
+    {
+        gm = GameManager.Instance;
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -20,7 +27,10 @@ public class ObjectClicker : MonoBehaviour
             if (hit.collider != null && hit.transform.gameObject.tag == "Pen")
             {
                 OpenPanel(hit.transform.gameObject);
+            }else{
+                CloseColorPanel();
             }
+
 
         }
 
@@ -30,10 +40,20 @@ public class ObjectClicker : MonoBehaviour
     {
         int currentPenID = -1;
 
-        if (clickObject.name == "Pen1")
+
+        for (int i = gm.pen.Length - 1; i >= 0; i--)
         {
-            currentPenID = 0;
+            if (clickObject == gm.pen[i])
+            {
+                currentPenID = i;
+            }
         }
+
         colorPanel.GetComponent<ColorPanel>().OpenColorPanel(currentPenID);
+    }
+
+    private void CloseColorPanel()
+    {
+        colorPanel.GetComponent<ColorPanel>().CloseColorPanel();
     }
 }

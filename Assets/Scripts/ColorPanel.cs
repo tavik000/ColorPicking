@@ -31,15 +31,36 @@ public class ColorPanel : MonoBehaviour
     public void OpenColorPanel(int penID)
     {
         currentPenID = penID;
-        print(currentPenID);
+
+
+        //print(currentPenID);
+
+        // Adjust Panel Position
+
+        Vector3 penPos = new Vector3(
+                                    gm.pen[currentPenID].transform.position.x - 1, 
+                                    gm.pen[currentPenID].transform.position.y + 3,
+                                    gm.pen[currentPenID].transform.position.z
+                                    );
+
+        Vector3 panelPos = Camera.main.WorldToScreenPoint(penPos);
+
+
+        colorPanel.transform.position = panelPos;
+
         colorPanel.SetActive(true);
+
     }
 
     public void ButtonOnclick(int buttonID)
     {
-        colorPanel.SetActive(false);
+        CloseColorPanel();
         gm.CheckAnswer(currentPenID, buttonID);
+    }
 
+    public void CloseColorPanel()
+    {
+        colorPanel.SetActive(false);
     }
 
 }

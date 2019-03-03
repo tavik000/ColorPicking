@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject colorPanel;
 
+
+    public GameObject[] pen;
+
+
     bool gameOver = false;
 
     int score = 0;
@@ -56,6 +60,33 @@ public class GameManager : MonoBehaviour
         correctAnswer[2] = 2;
         correctAnswer[3] = 3;
         correctAnswer[4] = 0;
+
+        // Shuffle
+
+        for (var i = correctAnswer.Length - 1; i >= 0; i--)
+        {
+            var r = Random.Range(0, i);
+            var temp = correctAnswer[i];
+            correctAnswer[i] = correctAnswer[r];
+            correctAnswer[r] = temp;
+        }
+
+        //foreach (var answer in correctAnswer)
+        //{
+        //    Debug.Log(answer);
+        //}
+
+        // Display the Image of Penbody
+
+        for (int i = pen.Length - 1; i >= 0; i--)
+        {
+            foreach (Transform penPic in pen[i].GetComponent<PenHandler>().penBodyPic)
+            {
+                penPic.gameObject.active = false;
+            }
+            pen[i].GetComponent<PenHandler>().penBodyPic[correctAnswer[i]].gameObject.active = true;
+        }
+
     }
 
     public void CheckAnswer(int penNumber, int answer)

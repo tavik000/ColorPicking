@@ -903,8 +903,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u88FD\u4F5C\u4EBA\u54E1\n\n\u904A\u6232\u8A2D\u8A08: Key Zhao\n\u7A0B\u5F0F:
-    Key Zhao \n\u7F8E\u8853: Key Zhao\n\u97F3\u6A02: \u4F5C\u66F2\uFF1AKey Zhao\n
-    \       \u6F14\u594F\uFF1AKey Zhao"
+    Key Zhao \n\u7F8E\u8853: Key Zhao\n\u97F3\u6A02: Key Zhao"
 --- !u!222 &531710398
 CanvasRenderer:
   m_ObjectHideFlags: 0
