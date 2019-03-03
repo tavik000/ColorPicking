@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject colorPanel;
+
+    public GameObject gameOverPage;
 
     public AudioSource correctSound;
     public AudioSource wrongSound;
@@ -67,6 +70,13 @@ public class GameManager : MonoBehaviour
         GeneratePen();
     }
 
+    public void Restart()
+    {
+        gameOverPage.SetActive(false);
+        ValueInit();
+        GeneratePen();
+    }
+
     void ValueInit()
     {
         // Init Value
@@ -81,6 +91,9 @@ public class GameManager : MonoBehaviour
         lastPenEventGeneratePenCount = 0;
         isLastPenEventGeneratePen = false;
         gameOver = false;
+
+        scoreEquationText.text = "Score: Random(5000)";
+        comboText.text = "";
     }
 
     public void GameOver()
@@ -99,6 +112,8 @@ public class GameManager : MonoBehaviour
 
         gameOver = true;
         score = 0;
+
+        gameOverPage.SetActive(true);
     }
 
     void GeneratePen()
@@ -332,5 +347,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
 }
