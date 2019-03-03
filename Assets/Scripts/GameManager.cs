@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     // Game Balance Value
     public float initRandomScore;
 
+    private bool isLastPenEventGeneratePen = false; // is in the last pen event create new pen or not
+    private int lastPenEventGeneratePenCount;
+
     bool gameOver = false;
 
     int score = 0;
@@ -75,7 +78,8 @@ public class GameManager : MonoBehaviour
         score = 0;
         combo = 1;
         guessTime = 0;
-
+        lastPenEventGeneratePenCount = 0;
+        isLastPenEventGeneratePen = false;
         gameOver = false;
     }
 
@@ -99,9 +103,6 @@ public class GameManager : MonoBehaviour
 
     void GeneratePen()
     {
-
-
-       
 
         correctAnswer[0] = 4;
         correctAnswer[1] = 1;
@@ -183,9 +184,18 @@ public class GameManager : MonoBehaviour
         }
 
 
-        // Check Player Finish
-        if (guessTime >= pen.Length)
+        if (isLastPenEventGeneratePen)
         {
+            if (guessTime >= lastPenEventGeneratePenCount)
+            {
+                // GameOver
+                GameOver();
+            }
+        }
+        else if (guessTime >= pen.Length)
+        {
+            // Check Player Finish
+
             AddInitScore();
 
             // Last Pen Event
@@ -200,38 +210,91 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 score += 2000;
-                scoreEquationText.text = scoreEquationText.text + " <color=magenta>+ " + "2000" + "</color> (Last pen cap is Pink)";
+                scoreEquationText.text = scoreEquationText.text + " <color=magenta>+ " + "2000" + "</color>";
 
                 // GameOver
                 GameOver();
                 break;
             case 1:
                 score -= 2000;
-                scoreEquationText.text = scoreEquationText.text + " <color=purple>- " + "2000" + "</color> (Last pen cap is Purple)";
+                scoreEquationText.text = scoreEquationText.text + " <color=purple>- " + "2000" + "</color>";
 
                 // GameOver
                 GameOver();
                 break;
             case 2:
-                print("Whadya want?");
+                lastPenEventGeneratePenCount = 2;
+                LastPenEventGeneratePen(lastPenEventGeneratePenCount);
                 break;
             case 3:
                 score = Mathf.RoundToInt(score * 1.5f);
 
                 string x = scoreEquationText.text.Replace("Score:", string.Empty);
 
-                scoreEquationText.text = "Score: <color=lime>(</color>" + x + " <color=lime>) x " + "1.5" + "</color> (Last pen cap is Light Green)";
+                scoreEquationText.text = "Score: <color=lime>(</color>" + x + " <color=lime>) x " + "1.5" + "</color>";
 
                 // GameOver
                 GameOver();
                 break;
             case 4:
-                print("Ulg, glib, Pblblblblb");
+                lastPenEventGeneratePenCount = 4;
+                LastPenEventGeneratePen(lastPenEventGeneratePenCount);
                 break;
             default:
                 Debug.Log("Error lastPenID: " + lastPenID);
                 break;
         }
+    }
+
+    void LastPenEventGeneratePen(int genPenCount)
+    {
+        isLastPenEventGeneratePen = true;
+        guessTime = 0;
+
+        for (var i = genPenCount - 1; i >= 0; i--)
+        {
+            penIsClicked[i] = false;
+        }
+
+        if (genPenCount == 2)
+        {
+            correctAnswer[0] = 1;
+            correctAnswer[1] = 0;
+        }
+
+        if (genPenCount == 4)
+        {
+            correctAnswer[0] = 1;
+            correctAnswer[1] = 3;
+            correctAnswer[2] = 2;
+            correctAnswer[3] = 0;
+        }
+
+
+        // Shuffle
+
+        for (var i = genPenCount - 1; i >= 0; i--)
+        {
+            var r = Random.Range(0, i);
+            var temp = correctAnswer[i];
+            correctAnswer[i] = correctAnswer[r];
+            correctAnswer[r] = temp;
+        }
+
+
+        for (int i = pen.Length - 1; i >= 0; i--)
+        {
+            foreach (Transform penPic in pen[i].GetComponent<PenHandler>().penBodyPic)
+            {
+                penPic.gameObject.active = false;
+            }
+            if ( i <= genPenCount - 1)
+            {
+                pen[i].GetComponent<PenHandler>().cantSee.gameObject.active = true;
+                pen[i].GetComponent<PenHandler>().penBodyPic[correctAnswer[i]].gameObject.active = true;
+            }
+        }
+
     }
 
     void AddInitScore()
