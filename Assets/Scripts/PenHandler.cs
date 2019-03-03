@@ -6,5 +6,5 @@ public class PenHandler : MonoBehaviour
 {
 
     public Transform[] penBodyPic;
-
+    public Transform cantSee;
 }

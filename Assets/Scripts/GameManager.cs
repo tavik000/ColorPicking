@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] pen;
 
 
+    public bool[] penIsClicked = new bool[5];
     bool gameOver = false;
 
     int score = 0;
@@ -55,6 +56,14 @@ public class GameManager : MonoBehaviour
 
     void GeneratePen()
     {
+
+
+        // Init Value
+        for (var i = penIsClicked.Length - 1; i >= 0; i--)
+        {
+            penIsClicked[i] = false;
+        }
+
         correctAnswer[0] = 4;
         correctAnswer[1] = 1;
         correctAnswer[2] = 2;
@@ -84,6 +93,7 @@ public class GameManager : MonoBehaviour
             {
                 penPic.gameObject.active = false;
             }
+            pen[i].GetComponent<PenHandler>().cantSee.gameObject.active = true;
             pen[i].GetComponent<PenHandler>().penBodyPic[correctAnswer[i]].gameObject.active = true;
         }
 
@@ -93,6 +103,11 @@ public class GameManager : MonoBehaviour
     {
         print(penNumber);
         print(answer);
+
+
+        penIsClicked[penNumber] = true;
+        pen[penNumber].GetComponent<PenHandler>().cantSee.gameObject.active = false;
+
         if (correctAnswer[penNumber] == answer)
         {
             print("you are right");
@@ -100,4 +115,7 @@ public class GameManager : MonoBehaviour
             print("you are wrong");
         }
     }
+
+
+
 }

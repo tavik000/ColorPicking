@@ -16,7 +16,7 @@ public class ColorPanel : MonoBehaviour
 
     private int currentPenID;
 
-
+   
     public void Init()
     {
         gm = GameManager.Instance;
