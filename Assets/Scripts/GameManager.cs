@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
 
         for (var i = correctAnswer.Length - 1; i >= 0; i--)
         {
-            var r = Random.Range(0, i);
+            var r = Random.Range(0, i + 1);
             var temp = correctAnswer[i];
             correctAnswer[i] = correctAnswer[r];
             correctAnswer[r] = temp;
@@ -224,8 +224,8 @@ public class GameManager : MonoBehaviour
         switch (lastPenID)
         {
             case 0:
-                score += 2000;
-                scoreEquationText.text = scoreEquationText.text + " <color=magenta>+ " + "2000" + "</color>";
+                score += 4000;
+                scoreEquationText.text = scoreEquationText.text + " <color=magenta>+ " + "4000" + "</color>";
 
                 // GameOver
                 GameOver();
@@ -242,11 +242,11 @@ public class GameManager : MonoBehaviour
                 LastPenEventGeneratePen(lastPenEventGeneratePenCount);
                 break;
             case 3:
-                score = Mathf.RoundToInt(score * 1.5f);
+                score = Mathf.RoundToInt(score * 1.75f);
 
                 string x = scoreEquationText.text.Replace("Score:", string.Empty);
 
-                scoreEquationText.text = "Score: <color=lime>(</color>" + x + " <color=lime>) x " + "1.5" + "</color>";
+                scoreEquationText.text = "Score: <color=lime>(</color>" + x + " <color=lime>) x " + "1.75" + "</color>";
 
                 // GameOver
                 GameOver();
@@ -288,9 +288,15 @@ public class GameManager : MonoBehaviour
 
         // Shuffle
 
+
         for (var i = genPenCount - 1; i >= 0; i--)
         {
-            var r = Random.Range(0, i);
+        
+            var r = Random.Range(0, i + 1);
+
+            //print("i: " + i);
+            //print("r: " + r);
+
             var temp = correctAnswer[i];
             correctAnswer[i] = correctAnswer[r];
             correctAnswer[r] = temp;
