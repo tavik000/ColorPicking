@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject colorPanel;
+    public GameObject askQuestionPanel;
 
     public GameObject gameOverPage;
 
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Text scoreEquationText;
     public Text comboText;
     public Text highscore;
+    public Text popupText;
+    
 
     [SerializeField] Image crossImage;
     [SerializeField] Image tickImage;
@@ -27,13 +30,17 @@ public class GameManager : MonoBehaviour
     public bool[] penIsClicked = new bool[5];
 
 
+    public int questionAnsSamePenColorCount;
+    public int questionAnsPairPen;
+
     // Game Balance Value
     public float initRandomScore;
+
+    public bool gameOver;
 
     bool isLastPenEventGeneratePen = false; // is in the last pen event create new pen or not
     int lastPenEventGeneratePenCount;
 
-    bool gameOver = false;
 
     int score = 0;
     int combo = 1;
@@ -49,33 +56,82 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameStart();
-    }
+        colorPanel.GetComponent<ColorPanel>().Init();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameStart();
     }
 
     void GameStart()
     {
+        gameOver = true; // gameOver set false after asked question
+
+        gameOverPage.SetActive(false);
 
         ValueInit();
 
-        colorPanel.GetComponent<ColorPanel>().Init();
 
         // Generate 5 pens and brand of "Cantsee"
 
         GeneratePen();
+        PrepareQuestionAnswer();
+
+        StartAskQuestion();
     }
 
     public void Restart()
     {
-        gameOverPage.SetActive(false);
-        ValueInit();
-        GeneratePen();
+        GameStart();
     }
+
+    void PrepareQuestionAnswer()
+    {
+        for (var i = correctAnswer.Length - 1; i >= 0; i--)
+        {
+            if (correctAnswer[i] == i)
+            {
+                questionAnsSamePenColorCount++;
+            }
+            else if (correctAnswer[correctAnswer[i]] == i )
+            {
+                questionAnsPairPen++;
+            }
+        }
+        questionAnsPairPen /= 2;
+
+        //print("questionAnsSamePenColorCount: " + questionAnsSamePenColorCount);
+        //print("questionAnsPairPen: " + questionAnsPairPen);
+    }
+
+
+    void StartAskQuestion()
+    {
+        askQuestionPanel.SetActive(true);
+    }
+
+    public void AskSamePenColorCount()
+    {
+        popupText.text = "有 " + questionAnsSamePenColorCount + "枝 同色筆";
+        popupText.gameObject.SetActive(true);
+        StartCoroutine(CountdownCleanPopupText(5.0f));
+        askQuestionPanel.SetActive(false);
+
+        gameOver = false;
+
+    }
+
+    public void AskPairPenCount()
+    {
+        popupText.text = "有 " + questionAnsPairPen + "對 對色筆";
+        popupText.gameObject.SetActive(true);
+        StartCoroutine(CountdownCleanPopupText(5.0f));
+        askQuestionPanel.SetActive(false);
+
+        gameOver = false;
+
+    }
+
+
+
 
     void ValueInit()
     {
@@ -85,12 +141,14 @@ public class GameManager : MonoBehaviour
             penIsClicked[i] = false;
         }
 
+        questionAnsSamePenColorCount = 0;
+        questionAnsPairPen = 0;
+
         score = 0;
         combo = 1;
         guessTime = 0;
         lastPenEventGeneratePenCount = 0;
         isLastPenEventGeneratePen = false;
-        gameOver = false;
 
         scoreEquationText.text = "Score: Random(5000)";
         comboText.text = "";
@@ -167,7 +225,7 @@ public class GameManager : MonoBehaviour
 
         if (correctAnswer[penNumber] == answer)
         {
-            print("you are right");
+            //print("you are right");
 
             correctSound.Play();
             tickImage.enabled = true;
@@ -184,7 +242,7 @@ public class GameManager : MonoBehaviour
 
         }else{
 
-            print("you are wrong");
+            //print("you are wrong");
 
             wrongSound.Play();
             crossImage.enabled = true;
@@ -266,6 +324,8 @@ public class GameManager : MonoBehaviour
         isLastPenEventGeneratePen = true;
         guessTime = 0;
 
+
+
         for (var i = genPenCount - 1; i >= 0; i--)
         {
             penIsClicked[i] = false;
@@ -275,6 +335,7 @@ public class GameManager : MonoBehaviour
         {
             correctAnswer[0] = 1;
             correctAnswer[1] = 0;
+            popupText.text = "<color=blue>再猜" + genPenCount + "枝筆</color>";
         }
 
         if (genPenCount == 4)
@@ -283,8 +344,12 @@ public class GameManager : MonoBehaviour
             correctAnswer[1] = 3;
             correctAnswer[2] = 2;
             correctAnswer[3] = 0;
+            popupText.text = "<color=orange>再猜" + genPenCount + "枝筆</color>";
         }
-
+       
+        popupText.gameObject.SetActive(true);
+        
+        StartCoroutine(CountdownCleanPopupText(1.5f));
 
         // Shuffle
 
@@ -333,6 +398,16 @@ public class GameManager : MonoBehaviour
 
         tickImage.enabled = false;
         crossImage.enabled = false;
+
+    }
+
+    IEnumerator CountdownCleanPopupText(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        popupText.text = "";
+        popupText.gameObject.SetActive(false);
+
     }
 
 

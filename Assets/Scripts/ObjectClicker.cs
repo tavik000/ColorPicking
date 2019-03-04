@@ -31,54 +31,58 @@ public class ObjectClicker : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(!gm.gameOver)
         {
-            //Set up the new Pointer Event
-            m_PointerEventData = new PointerEventData(m_EventSystem);
-            //Set the Pointer Event Position to that of the mouse position
-            m_PointerEventData.position = Input.mousePosition;
-
-            //Create a list of Raycast Results
-            List<RaycastResult> results = new List<RaycastResult>();
-
-            //Raycast using the Graphics Raycaster and mouse click position
-            m_Raycaster.Raycast(m_PointerEventData, results);
-
-            //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-            //foreach (RaycastResult result in results)
-            //{
-            //    Debug.Log("Hit " + result.gameObject.name);
-            //}
-
-
-
-            // If it is not a UI Click then Detect 3D Object Click
-            if ( results.Count == 0 )
+            if (Input.GetMouseButtonDown(0))
             {
+                //Set up the new Pointer Event
+                m_PointerEventData = new PointerEventData(m_EventSystem);
+                //Set the Pointer Event Position to that of the mouse position
+                m_PointerEventData.position = Input.mousePosition;
 
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                //Create a list of Raycast Results
+                List<RaycastResult> results = new List<RaycastResult>();
 
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                //Raycast using the Graphics Raycaster and mouse click position
+                m_Raycaster.Raycast(m_PointerEventData, results);
 
-                if (hit.collider != null)
+                //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+                foreach (RaycastResult result in results)
                 {
-                    if (hit.transform.gameObject.tag == "Pen")
+                    Debug.Log("Hit " + result.gameObject.name);
+                }
+
+
+
+                // If it is not a UI Click then Detect 3D Object Click
+                if (results.Count == 0)
+                {
+
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+                    if (hit.collider != null)
                     {
-                        OpenPanel(hit.transform.gameObject);
+                        if (hit.transform.gameObject.tag == "Pen")
+                        {
+                            OpenPanel(hit.transform.gameObject);
+                        }
                     }
+                    else
+                    {
+                        CloseColorPanel();
+                    }
+
                 }
-                else
-                {
-                    CloseColorPanel();
-                }
+
+
+
 
             }
-
-
-
-
         }
+
 
     }
 
