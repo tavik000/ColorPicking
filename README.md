@@ -1,18 +1,18 @@
 <p align="center">
   <h1 align="center">Color Picking</h1>
-  <p align="center">PC / Mac? Game of an Unity Project</p>
+  <p align="center">iOS/ iPad Game of an Unity Project</p>
 </p> 
 
 
 [![License](https://img.shields.io/npm/l/@angular/cli.svg)](/LICENSE) 
 
-
+![Progress](http://progressed.io/bar/100)Finish
 
 ### Keyword
 > `Unity` 
 
 
-![Progress](http://progressed.io/bar/80)   Under Developing... 
+
 
 
 ## Contents 
@@ -36,14 +36,13 @@ Guess the color of pen cap, correct get score, wrong deduce score.
 
 
 ## Release
-- [pending
+- no PC version yet
 
 
 ## Environment
 - MacOS: 10.14.1 <br>
 - Unity: 2018.3.2f1 <br>
 - Visual Studio: 7.6.11 <br>
-- Adobe Photoshop CC 2019: 20.0.0 Release
 
 
 
@@ -68,6 +67,11 @@ Gameplay <br>
 ![image](./ScreenShot/scr01.png) <br>
 ![image](./ScreenShot/scr02.png) <br>
 ![image](./ScreenShot/scr03.png) <br>
+![image](./ScreenShot/scr04.png) <br>
+![image](./ScreenShot/scr05.png) <br>
+![image](./ScreenShot/scr06.png) <br>
+![image](./ScreenShot/scr07.png) <br>
+![image](./ScreenShot/scr08.png) <br>
 
 
 
